@@ -30,7 +30,7 @@ class Webpacker::Engine < ::Rails::Engine
   #     - add `config.webpacker.check_yarn_integrity = true`
   initializer "webpacker.yarn_check" do |app|
     if File.exist?("yarn.lock") && Webpacker.config.config_path.exist? && Webpacker.config.check_yarn_integrity?
-      output = `yarn check --integrity && yarn check --verify-tree 2>&1`
+      output = `yarn install --check-files 2>&1`
 
       unless $?.success?
         $stderr.puts "\n\n"
